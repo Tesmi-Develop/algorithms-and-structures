@@ -32,6 +32,8 @@ public class Tests
             new[] { 1, 2, 1 },
             new[] { 3, 2, 1 },
             new[] { 9, 8, 7, 6, 9, 8, 7, 6, 3, 4, 1 },
+            new[] { 1, 2 },
+            new[] { 1, 4, 5, 2, 3, 8, 9 }
         };
 
         foreach (var array in cases)

@@ -35,10 +35,7 @@ public static class Sorting
                 read = end1 + 1;
 
                 if (read >= length)
-                {
-                    CopyRange(array, temp, start1, end1);
                     break;
-                }
                 
                 var end2 = FindRunEnd(array, length, read);
                 read = end2 + 1;
@@ -83,11 +80,5 @@ public static class Sorting
 
         while (j <= right)
             destination[k++] = source[j++];
-    }
-    
-    private static void CopyRange<T>(T[] source, T[] destination, int start, int end)
-    {
-        for (var i = start; i <= end; i++)
-            destination[i] = source[i];
     }
 }

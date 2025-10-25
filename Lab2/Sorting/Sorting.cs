@@ -4,7 +4,7 @@ public static class Sorting
 {
     public static void InsertionSort<T>(T[] array, int length) where T : IComparable<T>
     {
-        for (var i = 1; i < array.Length; i++)
+        for (var i = 1; i < length; i++)
         {
             var key = array[i];
             var j = i - 1;
@@ -35,8 +35,11 @@ public static class Sorting
                 read = end1 + 1;
 
                 if (read >= length)
+                {
+                    Array.Copy(array, start1, temp, start1, end1 - start1 + 1);
                     break;
-                
+                }
+
                 var end2 = FindRunEnd(array, length, read);
                 read = end2 + 1;
 

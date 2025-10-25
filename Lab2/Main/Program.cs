@@ -18,9 +18,16 @@ public static class Program
         while (index <= countRecords && reader.ReadLine() is { } line)
         {
             var parts = line.Split('\t',  StringSplitOptions.RemoveEmptyEntries);
-            var date = DateTime.Parse(parts[0], CultureInfo.InvariantCulture);
+            var date = new CustomMyDate(parts[0]);
+
+            var names = parts[1].Split(' ');
             
-            records.Add(new UserRecord { Date = date, Name = parts[1], Index = index });
+            records.Add(new UserRecord { Date = date, FullName = new FullName()
+            {
+                LastName = names[0],
+                FirstName = names[1],
+                MiddleName = names[2],
+            }, Index = index });
             index++;
         }
         
@@ -64,7 +71,7 @@ public static class Program
      
     public static void Main()
     {
-        Console.WriteLine("Введите количество строк n: ");
+        Console.Write("Введите количество строк n: ");
         var n = int.Parse(Console.ReadLine() ?? string.Empty);
         
         var records = ReadRecords(n);

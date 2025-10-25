@@ -11,6 +11,7 @@ public static class Program
     {
         public required List<string> FirstNames;
         public required List<string> LastNames;
+        public required List<string> MiddleNames;
     }
     
     private static string GetProjectRoot()
@@ -32,19 +33,25 @@ public static class Program
     {
         var firstNames = new List<string>();
         var lastNames = new List<string>();
+        var middleNames = new List<string>();
         using var reader = new StreamReader(DataFileName);
 
         while (reader.ReadLine() is { } line)
         {
-            var parts = line.Split('\t',  StringSplitOptions.RemoveEmptyEntries);
-            firstNames.Add(parts[0]);
-            lastNames.Add(parts[1]);
+            var parts = line.Split(' ',  StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length <= 2)
+                throw new Exception("Invalid data format");
+            
+            lastNames.Add(parts[0]);
+            firstNames.Add(parts[1]);
+            middleNames.Add(parts[2]);
         }
         
         return new Data()
         {
             FirstNames = firstNames,
-            LastNames = lastNames
+            LastNames = lastNames,
+            MiddleNames = middleNames,
         };
     }
     
@@ -58,37 +65,104 @@ public static class Program
         return lines;
     }
     
-    private static DateTime GetRandomDate(Random random, DateTime start, DateTime end)
+    private static CustomMyDate GetRandomDate(Random random, DateTime start, DateTime end)
     {
-        var range = (int)(end - start).TotalSeconds;
-        return start.AddSeconds(random.Next(range));
+        var range = (int)(end - start).TotalDays;
+        return new CustomMyDate(start.Year, start.Month, start.Day).AddDays(random.Next(range));
     }
 
-    private static string GetRandomFullName(Random random, Data data)
+    private static FullName GetRandomFullName(Random random, Data data)
     {
-        return $"{data.FirstNames[random.Next(data.FirstNames.Count)]} {data.LastNames[random.Next(data.LastNames.Count)]}";
+        var index = random.Next(data.LastNames.Count);
+        return new FullName()
+        {
+            LastName = data.LastNames[index],
+            FirstName = data.FirstNames[index],
+            MiddleName = data.MiddleNames[index],
+        };
+    }
+    
+    private static int ReadYear(string message, int defaultYear)
+    {
+        while (true)
+        {
+            Console.Write($"{message} (по умолчанию: {defaultYear}): ");
+            var input = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(input))
+                return defaultYear;
+
+            if (int.TryParse(input, out var year) && year is >= 1 and <= 9999)
+                return year;
+
+            Console.WriteLine("Неверный формат. Введите корректный год (например: 2022).");
+        }
+    }
+    
+    private static int ReadCount(string message)
+    {
+        while (true)
+        {
+            Console.Write($"{message}: ");
+            var input = Console.ReadLine();
+
+            if (int.TryParse(input, out var count) && count > 0)
+                return count;
+
+            Console.WriteLine("Некорректное количество. Введите корректное число > 0.");
+        }
     }
      
     public static void Main()
     {
-        Console.WriteLine("Введите количество записей для генерации");
-        var count = int.Parse(Console.ReadLine() ?? string.Empty);
-        var data = ReadData();
-        var random = new Random();
-        var startData = new DateTime(2020, 1, 1);
-        var endData = new DateTime(2025, 10, 22);
-        var records = new List<UserRecord>();
-
-        for (var i = 0; i < count; i++)
+        try
         {
-            records.Add(new UserRecord()
+            var random = new Random();
+            var data = ReadData();
+
+            if (data.FirstNames.Count == 0 || data.LastNames.Count == 0 || data.MiddleNames.Count == 0)
+                throw new Exception("Empty data");
+
+            var count = ReadCount("Введите количество записей для генерации"); 
+
+            int minYear, maxYear;
+            while (true)
             {
-                Name = GetRandomFullName(random, data),
-                Date = GetRandomDate(random, startData, endData),
-                Index = i,
-            });
+                minYear = ReadYear("Введите (или пропустите этот шаг) минимальный год для записи", 2020);
+                maxYear = ReadYear("Введите (или пропустите этот шаг) максимальный год для записи", 2025);
+
+                if (minYear > maxYear)
+                {
+                    Console.WriteLine(
+                        $"⚠️ Минимальный год ({minYear}) не может быть больше максимального ({maxYear}). Попробуйте снова.");
+                    continue;
+                }
+
+                break;
+            }
+
+            var startData = new DateTime(minYear, 1, 1);
+            var endData = new DateTime(maxYear, 12, 31);
+            var records = new List<UserRecord>();
+
+            for (var i = 0; i < count; i++)
+            {
+                records.Add(new UserRecord()
+                {
+                    FullName = GetRandomFullName(random, data),
+                    Date = GetRandomDate(random, startData, endData),
+                    Index = i,
+                });
+            }
+
+            File.WriteAllText(Path.Combine(GetProjectRoot(), "output.txt"), ToLines(records.ToArray()).ToString());
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
         }
         
-        File.WriteAllText(Path.Combine(GetProjectRoot(), "output.txt"), ToLines(records.ToArray()).ToString());
+        Console.WriteLine("Для завершение программы нажмите любую клавишу");
+        Console.ReadKey();
     }
 }

@@ -2,23 +2,23 @@ namespace Record;
 
 public struct UserRecord : IComparable<UserRecord>
 {
-    public DateTime Date;
-    public string Name;
+    public CustomMyDate Date;
+    public FullName FullName;
     public int Index;
 
     public override string ToString()
     {
-        return $"{Date:yyyy-MM-dd}\t{Name}\t{Index}";
+        return $"{Date}\t{FullName}\t{Index}";
     }
     
     public string ToStringWithoutIndex()
     {
-        return $"{Date:yyyy-MM-dd}\t{Name}";
+        return $"{Date}\t{FullName}";
     }
 
     public int CompareTo(UserRecord other)
     {
         var compare = Date.CompareTo(other.Date);
-        return compare != 0 ? compare : string.Compare(other.Name, Name, StringComparison.Ordinal);
+        return compare != 0 ? compare : other.FullName.CompareTo(FullName);
     }
 }

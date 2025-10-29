@@ -21,7 +21,9 @@ namespace Record
 
         private static bool IsLeapYear(int year)
         {
-            return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+            if ((year & 3) != 0) return false;
+            if ((year & 15) == 0) return true;
+            return (uint)year % 25 != 0;
         }
         
         public CustomMyDate(int year, int month, int day)

@@ -9,7 +9,6 @@ namespace Lab2;
 public static class Program
 {
     private const string InputFile = "input.txt";
-    private const string Input2File = "input2.txt";
 
     private static List<UserRecord> ReadRecords(int countRecords, string fileName)
     {
@@ -58,7 +57,7 @@ public static class Program
         foreach (var r in arr)
             lines.AppendLine(r.ToString());
         
-        lines.Append($"Время сортировки: {time.TotalSeconds:F3} сек");
+        lines.Append($"Время сортировки: {time.TotalMicroseconds:F3} µs");
         return lines;
     }
 
@@ -84,7 +83,7 @@ public static class Program
             var time1 = RunSort(data.ToArray(), n, Sorting.Sorting.InsertionSort);
             var time2 = RunSort(data.ToArray(), n, Sorting.Sorting.NaturalMergeSort);
             
-            result.AppendLine($"{n}\t{time1.TotalMilliseconds:F3}\t{time2.TotalMilliseconds:F3}");
+            result.AppendLine($"{n}\t{time1.TotalMicroseconds:F3}\t{time2.TotalMicroseconds:F3}");
             Console.WriteLine($"Завершено для i={i}");
         }
         

@@ -1,0 +1,151 @@
+{
+  "version": 3,
+  "targets": {
+    "net9.0": {
+      "Hypercube.Utilities/1.1.2": {
+        "type": "package",
+        "dependencies": {
+          "JetBrains.Annotations": "2025.2.2"
+        },
+        "compile": {
+          "lib/net9.0/Hypercube.Utilities.dll": {}
+        },
+        "runtime": {
+          "lib/net9.0/Hypercube.Utilities.dll": {}
+        }
+      },
+      "JetBrains.Annotations/2025.2.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {
+            "related": ".deps.json;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {
+            "related": ".deps.json;.xml"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Hypercube.Utilities/1.1.2": {
+      "sha512": "iOP03Grc8lsnU1jigPJ2dTIz8D0RpqZmDO49rH+6fswWDaLc4AfRPvxyD7SmFVRnqmYVedLuXCNVhsuprG9Y4w==",
+      "type": "package",
+      "path": "hypercube.utilities/1.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "assets/card.svg",
+        "assets/logo.png",
+        "hypercube.utilities.1.1.2.nupkg.sha512",
+        "hypercube.utilities.nuspec",
+        "lib/net9.0/Hypercube.Utilities.dll"
+      ]
+    },
+    "JetBrains.Annotations/2025.2.2": {
+      "sha512": "0X56ZRizuHdrnPpgXjWV7f2tQO1FlQg5O1967OGKnI/4ZRNOK642J8L7brM1nYvrxTTU5TP1yRyXLRLaXLPQ8A==",
+      "type": "package",
+      "path": "jetbrains.annotations/2025.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "jetbrains.annotations.2025.2.2.nupkg.sha512",
+        "jetbrains.annotations.nuspec",
+        "lib/net20/JetBrains.Annotations.dll",
+        "lib/net20/JetBrains.Annotations.xml",
+        "lib/netstandard1.0/JetBrains.Annotations.deps.json",
+        "lib/netstandard1.0/JetBrains.Annotations.dll",
+        "lib/netstandard1.0/JetBrains.Annotations.xml",
+        "lib/netstandard2.0/JetBrains.Annotations.deps.json",
+        "lib/netstandard2.0/JetBrains.Annotations.dll",
+        "lib/netstandard2.0/JetBrains.Annotations.xml",
+        "lib/portable40-net40+sl5+win8+wp8+wpa81/JetBrains.Annotations.dll",
+        "lib/portable40-net40+sl5+win8+wp8+wpa81/JetBrains.Annotations.xml",
+        "readme.md"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net9.0": [
+      "Hypercube.Utilities >= 1.1.2"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\TesmiDev\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\Projects\\algorithms-and-structures\\Lab_3_2\\Lab_3_2\\Lab_3_2.csproj",
+      "projectName": "Lab_3_2",
+      "projectPath": "D:\\Projects\\algorithms-and-structures\\Lab_3_2\\Lab_3_2\\Lab_3_2.csproj",
+      "packagesPath": "C:\\Users\\TesmiDev\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\algorithms-and-structures\\Lab_3_2\\Lab_3_2\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\TesmiDev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+      ],
+      "originalTargetFrameworks": [
+        "net9.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
+    },
+    "frameworks": {
+      "net9.0": {
+        "targetAlias": "net9.0",
+        "dependencies": {
+          "Hypercube.Utilities": {
+            "target": "Package",
+            "version": "[1.1.2, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

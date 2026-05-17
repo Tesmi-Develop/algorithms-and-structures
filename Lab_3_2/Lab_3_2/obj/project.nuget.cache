@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "xvSvpVG/oaw=",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\algorithms-and-structures\\Lab_3_2\\Lab_3_2\\Lab_3_2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\TesmiDev\\.nuget\\packages\\hypercube.utilities\\1.1.2\\hypercube.utilities.1.1.2.nupkg.sha512",
+    "C:\\Users\\TesmiDev\\.nuget\\packages\\jetbrains.annotations\\2025.2.2\\jetbrains.annotations.2025.2.2.nupkg.sha512"
+  ],
+  "logs": []
+}
